@@ -78,6 +78,7 @@ function playGround(num_cell, cellInRow, num_cell){
     console.log(bombs)
 
     let score = document.getElementById("score");
+    let done = [];
     
 
     for(let i=1; i<=num_cell; i++){
@@ -92,14 +93,15 @@ function playGround(num_cell, cellInRow, num_cell){
                 alert(`HAI VINTO! il tuo punteggio è di: ${punteggio}`)
             }
             if(!game_over){
-                if(!bombs.includes(i)){
-                    this.classList.toggle("bg_lightblue");
+                if(!bombs.includes(i) && !done.includes(i)){
+                    this.classList.add("bg_lightblue");
                     console.log(square.innerText);
                     punteggio++;
+                    done.push(i);
                     score.innerText = (`Il tuo punteggio è: ${punteggio} `)
                 }
-                else{
-                    this.classList.toggle("bg_red");
+                else if(bombs.includes(i)){
+                    square.classList.add("bg_red");
                     game_over = true
                     
                     score.innerText = (`BOOOOOMMM!!!! hai preso la bomba il tuo punteggio è: ${punteggio} `)
