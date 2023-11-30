@@ -10,6 +10,7 @@ function numberRandom(){
             bombs.push(num);
         }
     }
+    return bombs
 }
 
 // 9 - ? il punteggio è uguale a 100 - 16
@@ -40,10 +41,8 @@ function newGrid(){
     let level_selector = document.getElementById("difficulty");
     let level = parseInt(level_selector.value);
 
-    //creiamo una variabile punteggio;
-    // creiamo variabile game_over impostata su false;
-    let punteggio;
-    let game_over = false;
+    
+ 
 
     switch(level){
         case 1:
@@ -68,27 +67,40 @@ function newGrid(){
 
     
 function playGround(num_cell, cellInRow){
+    //creiamo una variabile punteggio;
+    // creiamo variabile game_over impostata su false;
+    let punteggio = 0;
+    let game_over = false;
+    
+    let bombs = numberRandom()
+
     for(let i=1; i<=num_cell; i++){
         let square = create_cell(i, cellInRow);
+        
         grid.appendChild(square);
         // mettiamo una condizione al click delle caselle; se la variante game over è falsa controlliamo se il numero della casella si trova nell array
    
-   
+        
         square.addEventListener("click", function(){
             if(!game_over){
                 if(!bombs.includes(i)){
-                    
+                    this.classList.toggle("bg_lightblue");
+                    console.log(square.innerText);
+                    punteggio++;
                 }
+                else{
+                    game_over = true
+                    alert(`BOOOOOMMM!!!! il tuo punteggio è: ${punteggio} `)
                 }
-                this.classList.toggle("bg_lightblue");
-                console.log(square.innerText)
+            }
+                
             })
-        }
     }
+}
 
-    button.addEventListener("click", function(){
-        newGrid()
-    })
+button.addEventListener("click", function(){
+   newGrid()
+})
 
 
 
