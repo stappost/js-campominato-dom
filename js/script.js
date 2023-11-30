@@ -96,6 +96,7 @@ function playGround(num_cell, cellInRow, num_cell){
                     this.classList.toggle("bg_lightblue");
                     console.log(square.innerText);
                     punteggio++;
+                    score.innerText = (`Il tuo punteggio è: ${punteggio} `)
                 }
                 else{
                     this.classList.toggle("bg_red");
@@ -106,7 +107,7 @@ function playGround(num_cell, cellInRow, num_cell){
             }    
         })
     }
-    score.innerText = (`Il tuo punteggio è: ${punteggio} `)
+    
 }
 
 button.addEventListener("click", function(){
