@@ -72,9 +72,13 @@ function playGround(num_cell, cellInRow, num_cell){
     let punteggio = 0;
     let game_over = false;
     
+    
     const NUMBER_OF_BOMBS = 16;
     let bombs = numberRandom(NUMBER_OF_BOMBS, num_cell)
     console.log(bombs)
+
+    let score = document.getElementById("score");
+    
 
     for(let i=1; i<=num_cell; i++){
         let square = create_cell(i, cellInRow);
@@ -94,12 +98,15 @@ function playGround(num_cell, cellInRow, num_cell){
                     punteggio++;
                 }
                 else{
+                    this.classList.toggle("bg_red");
                     game_over = true
-                    alert(`BOOOOOMMM!!!! il tuo punteggio è: ${punteggio} `)
+                    
+                    score.innerText = (`BOOOOOMMM!!!! hai preso la bomba il tuo punteggio è: ${punteggio} `)
                 }
-            }        
+            }    
         })
     }
+    score.innerText = (`Il tuo punteggio è: ${punteggio} `)
 }
 
 button.addEventListener("click", function(){
