@@ -1,3 +1,22 @@
+//  funzione che genera 16 numeri casuali e univoci nel range da 1 a 100 ;
+//  inseriamo i numeri generati all'interno di un array;
+function numberRandom(){
+    let NUMBER_OF_BOMBS = 16;
+    let bombs = [];
+    
+    while(bombs.length < NUMBER_OF_BOMBS){
+        let num = Math.floor(Math.random()*100 +1);
+        if(!bombs.includes(num)){
+            bombs.push(num);
+        }
+    }
+}
+
+// 9 - ? il punteggio è uguale a 100 - 16
+//     9.1 - creiamo alert che mostra il punteggio e si congratula per la vittoria
+//     9.2 - la variante game-over diventa vera
+
+
 // FUNZIONE CHE CREA CELLE 
 function create_cell(num, cellInRow){
     let element = document.createElement("div");
@@ -9,8 +28,8 @@ function create_cell(num, cellInRow){
 }
 
 // RECUPERO BUTTON E DIV #GRID 
-const grid = document.getElementById("grid");
 const button = document.getElementById("play");
+const grid = document.getElementById("grid");
 
 function newGrid(){
     grid.innerHTML = " ";
@@ -20,6 +39,11 @@ function newGrid(){
     
     let level_selector = document.getElementById("difficulty");
     let level = parseInt(level_selector.value);
+
+    //creiamo una variabile punteggio;
+    // creiamo variabile game_over impostata su false;
+    let punteggio;
+    let game_over = false;
 
     switch(level){
         case 1:
@@ -39,14 +63,23 @@ function newGrid(){
             cellInRow = 10;
             break;
         }
-        playGround(num_cell, cellInRow)
-    }
+    playGround(num_cell, cellInRow)
+}
+
     
-    function playGround(num_cell, cellInRow){
-        for(let i=1; i<=num_cell; i++){
-            let square = create_cell(i, cellInRow);
-            grid.appendChild(square);
-            square.addEventListener("click", function(){
+function playGround(num_cell, cellInRow){
+    for(let i=1; i<=num_cell; i++){
+        let square = create_cell(i, cellInRow);
+        grid.appendChild(square);
+        // mettiamo una condizione al click delle caselle; se la variante game over è falsa controlliamo se il numero della casella si trova nell array
+   
+   
+        square.addEventListener("click", function(){
+            if(!game_over){
+                if(!bombs.includes(i)){
+                    
+                }
+                }
                 this.classList.toggle("bg_lightblue");
                 console.log(square.innerText)
             })
