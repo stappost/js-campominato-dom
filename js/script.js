@@ -31,7 +31,7 @@ function create_cell(num, cellInRow){
 // RECUPERO BUTTON E DIV #GRID 
 const button = document.getElementById("play");
 const grid = document.getElementById("grid");
-
+//  FUNZIONE DIFFERENZIAZIONE LIVELLI 
 function newGrid(){
     grid.innerHTML = " ";
 
@@ -58,14 +58,13 @@ function newGrid(){
             cellInRow = 7;
             break;
         default:
-            num_cell = 100;
-            cellInRow = 10;
+            alert("Seleziona un livello prima di avviare la partita")
             break;
         }
     playGround(num_cell, cellInRow, num_cell)
 }
 
-    
+    // FUNZIONE CREAZIONE GRIGLIA 
 function playGround(num_cell, cellInRow, num_cell){
     //creiamo una variabile punteggio;
     // creiamo variabile game_over impostata su false;
@@ -91,6 +90,7 @@ function playGround(num_cell, cellInRow, num_cell){
         square.addEventListener("click", function(){
             if(punteggio == num_cell - NUMBER_OF_BOMBS){
                 alert(`HAI VINTO! il tuo punteggio è di: ${punteggio}`)
+                game_over = true;
             }
             if(!game_over){
                 if(!bombs.includes(i) && !done.includes(i)){
@@ -105,12 +105,20 @@ function playGround(num_cell, cellInRow, num_cell){
                     game_over = true
                     
                     score.innerText = (`BOOOOOMMM!!!! hai preso la bomba il tuo punteggio è: ${punteggio} `)
+
+                    for(let i=1; i<=num_cell; i++){
+                        if(bombs.includes(i)){
+                            square.classList.add("bg_red");
+                        }
+                    }
                 }
             }    
         })
     }
-    
+
 }
+
+
 
 button.addEventListener("click", function(){
    newGrid()
