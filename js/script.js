@@ -1,11 +1,11 @@
 //  funzione che genera 16 numeri casuali e univoci nel range da 1 a 100 ;
 //  inseriamo i numeri generati all'interno di un array;
-function numberRandom(){
-    let NUMBER_OF_BOMBS = 16;
+function numberRandom(num_bombs, num_cell){
+   
     let bombs = [];
     
-    while(bombs.length < NUMBER_OF_BOMBS){
-        let num = Math.floor(Math.random()*100 +1);
+    while(bombs.length < num_bombs){
+        let num = Math.floor(Math.random() * num_cell +1);
         if(!bombs.includes(num)){
             bombs.push(num);
         }
@@ -62,17 +62,19 @@ function newGrid(){
             cellInRow = 10;
             break;
         }
-    playGround(num_cell, cellInRow)
+    playGround(num_cell, cellInRow, num_cell)
 }
 
     
-function playGround(num_cell, cellInRow){
+function playGround(num_cell, cellInRow, num_cell){
     //creiamo una variabile punteggio;
     // creiamo variabile game_over impostata su false;
     let punteggio = 0;
     let game_over = false;
     
-    let bombs = numberRandom()
+    const NUMBER_OF_BOMBS = 16;
+    let bombs = numberRandom(NUMBER_OF_BOMBS, num_cell)
+    console.log(bombs)
 
     for(let i=1; i<=num_cell; i++){
         let square = create_cell(i, cellInRow);
@@ -82,6 +84,9 @@ function playGround(num_cell, cellInRow){
    
         
         square.addEventListener("click", function(){
+            if(punteggio == num_cell - NUMBER_OF_BOMBS){
+                alert(`HAI VINTO! il tuo punteggio è di: ${punteggio}`)
+            }
             if(!game_over){
                 if(!bombs.includes(i)){
                     this.classList.toggle("bg_lightblue");
@@ -92,9 +97,8 @@ function playGround(num_cell, cellInRow){
                     game_over = true
                     alert(`BOOOOOMMM!!!! il tuo punteggio è: ${punteggio} `)
                 }
-            }
-                
-            })
+            }        
+        })
     }
 }
 
