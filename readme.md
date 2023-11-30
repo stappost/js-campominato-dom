@@ -20,3 +20,21 @@ Consigli del giorno: :party_wizard:
 Scriviamo prima cosa vogliamo fare passo passo in italiano, dividiamo il lavoro in micro problemi.
 Ad esempio: Di cosa ho bisogno per generare i numeri? Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti. Le validazioni e i controlli possiamo farli anche in un secondo momento.
 Buon lavoro, a domani!
+
+SCAFFOLDING
+
+1 - creare funzione che generi 16 numeri casuali e univoci nel range da 1 a 100 ;
+2 - inseriamo i numeri generati all'interno di un array;
+3 - mettiamo una condizione al click delle caselle;
+4 - creiamo una variabile punteggio;
+5 - creiamo variabile game-over impostata su false;
+6 - ? la variante game-over è falsa controlliamo
+    6 - ? il numero della casella non è all'interno dell'array;
+        6.1 - la casella diventa azzurra;
+        6.2 - il punteggio aumenta;
+    7 - : la casella diventa rossa;
+        7.1 - la variante game-over diventa vera;
+        8 - creiamo alert che mostra la variabile punteggio;
+9 - ? il punteggio è uguale a 100 - 16
+    9.1 - creiamo alert che mostra il punteggio e si congratula per la vittoria
+    9.2 - la variante game-over diventa vera
