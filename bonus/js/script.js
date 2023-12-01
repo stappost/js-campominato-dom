@@ -31,7 +31,7 @@ function create_cell(num, cellInRow){
 // RECUPERO BUTTON E DIV #GRID 
 const button = document.getElementById("play");
 const grid = document.getElementById("grid");
-
+//  FUNZIONE DIFFERENZIAZIONE LIVELLI 
 function newGrid(){
     grid.innerHTML = " ";
 
@@ -58,14 +58,13 @@ function newGrid(){
             cellInRow = 7;
             break;
         default:
-            num_cell = 100;
-            cellInRow = 10;
+            alert("Seleziona un livello prima di avviare la partita")
             break;
         }
     playGround(num_cell, cellInRow, num_cell)
 }
 
-    
+    // FUNZIONE CREAZIONE GRIGLIA 
 function playGround(num_cell, cellInRow, num_cell){
     //creiamo una variabile punteggio;
     // creiamo variabile game_over impostata su false;
@@ -78,6 +77,7 @@ function playGround(num_cell, cellInRow, num_cell){
     console.log(bombs)
 
     let score = document.getElementById("score");
+    let done = [];
     
 
     for(let i=1; i<=num_cell; i++){
@@ -90,33 +90,36 @@ function playGround(num_cell, cellInRow, num_cell){
         square.addEventListener("click", function(){
             if(punteggio == num_cell - NUMBER_OF_BOMBS){
                 alert(`HAI VINTO! il tuo punteggio è di: ${punteggio}`)
+                game_over = true;
             }
             if(!game_over){
-                if(!bombs.includes(i)){
-                    this.classList.toggle("bg_lightblue");
+                if(!bombs.includes(i) && !done.includes(i)){
+                    this.classList.add("bg_lightblue");
                     console.log(square.innerText);
                     punteggio++;
+                    done.push(i);
+                    score.innerText = (`Il tuo punteggio è: ${punteggio} `)
                 }
-                else{
-                    this.classList.toggle("bg_red");
+                else if(bombs.includes(i)){
+                    square.classList.add("bg_red");
                     game_over = true
                     
                     score.innerText = (`BOOOOOMMM!!!! hai preso la bomba il tuo punteggio è: ${punteggio} `)
+                    const squares =document.querySelectorAll(".square");
+
+                    for(let i=1; i<=squares.length; i++){
+                        if(bombs.includes(parseInt(squares[i].innerText))){
+                            squares[i].classList.add("bg_red");
+                           
+                        }
+                    }
                 }
             }    
         })
     }
-    score.innerText = (`Il tuo punteggio è: ${punteggio} `)
+
 }
 
 button.addEventListener("click", function(){
    newGrid()
 })
-
-
-
-
-
-
-
-

@@ -109,6 +109,7 @@ function playGround(num_cell, cellInRow, num_cell){
                     for(let i=1; i<=num_cell; i++){
                         if(bombs.includes(i)){
                             square.classList.add("bg_red");
+                           
                         }
                     }
                 }
@@ -117,8 +118,6 @@ function playGround(num_cell, cellInRow, num_cell){
     }
 
 }
-
-
 
 button.addEventListener("click", function(){
    newGrid()
